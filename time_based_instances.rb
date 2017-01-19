@@ -109,7 +109,7 @@ class TimeBasedInstances
       role: Humidifier.fn.get_att(["LambdaExecutionRole", "Arn"]),
       code: {
         zip_file: <<-EOS
-const INSTANCE_IDS = "#{ENV["EC2_INSTANCE_IDS"]}";
+const INSTANCE_IDS = [#{ENV["EC2_INSTANCE_IDS"]}];
 
 var AWS = require('aws-sdk');
 AWS.config.region = "#{ENV["AWS_REGION"]}";
@@ -117,9 +117,7 @@ AWS.config.region = "#{ENV["AWS_REGION"]}";
 function ec2Start(callback){
   var ec2 = new AWS.EC2();
   var params = {
-    InstanceIds: [
-      INSTANCE_IDS
-    ]
+    InstanceIds: INSTANCE_IDS
   };
 
   ec2.startInstances(params, function(err, data) {
@@ -151,7 +149,7 @@ exports.handler = function(event, context) {
       role: Humidifier.fn.get_att(["LambdaExecutionRole", "Arn"]),
       code: {
         zip_file: <<-EOS
-const INSTANCE_IDS = "#{ENV["EC2_INSTANCE_IDS"]}";
+const INSTANCE_IDS = [#{ENV["EC2_INSTANCE_IDS"]}];
 
 var AWS = require('aws-sdk');
 AWS.config.region = "#{ENV["AWS_REGION"]}";
@@ -159,9 +157,7 @@ AWS.config.region = "#{ENV["AWS_REGION"]}";
 function ec2Stop(callback){
   var ec2 = new AWS.EC2();
   var params = {
-    InstanceIds: [
-      INSTANCE_IDS
-    ]
+    InstanceIds: INSTANCE_IDS
   };
 
   ec2.stopInstances(params, function(err, data) {

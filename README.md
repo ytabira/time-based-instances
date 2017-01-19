@@ -29,7 +29,7 @@ export AWS_ACCESS_KEY_ID=AKIA***************
 export AWS_SECRET_ACCESS_KEY=****************************************
 export AWS_REGION=ap-northeast-1
 export TIME_BASED_INSTANCES_STACK_NAME=tabira-schedule
-export EC2_INSTANCE_IDS=i-*************,i-*************
+export EC2_INSTANCE_IDS="'i-*************','i-*************'"
 export EC2_START_SCHEDULE_EXPRESSION="cron(0 0 ? * MON-FRI *)"
 export EC2_STOP_SCHEDULE_EXPRESSION="cron(0 10 * * ? *)"
 ```
